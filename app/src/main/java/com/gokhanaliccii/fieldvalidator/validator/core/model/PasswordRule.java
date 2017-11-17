@@ -1,5 +1,7 @@
 package com.gokhanaliccii.fieldvalidator.validator.core.model;
 
+import com.gokhanaliccii.fieldvalidator.validator.annotation.ValidatePassword;
+
 /**
  * Created by gokhan on 17/11/17.
  */
@@ -9,11 +11,22 @@ public class PasswordRule extends BaseRule {
     private String input;
     private String pattern;
     private int minCapitalCaseLetterCount;
+    private int minNumberCount;
 
-    public PasswordRule(String input, String pattern, int minCapitalCaseLetterCout) {
+    public PasswordRule(String input, String pattern,
+                        int minCapitalCaseLetterCount,
+                        int minNumberCount) {
         this.input = input;
         this.pattern = pattern;
-        this.minCapitalCaseLetterCount = minCapitalCaseLetterCout;
+        this.minCapitalCaseLetterCount = minCapitalCaseLetterCount;
+        this.minNumberCount = minNumberCount;
+    }
+
+    public PasswordRule(String input, ValidatePassword validatePassword) {
+        this.input = input;
+        this.pattern = validatePassword.pattern();
+        this.minCapitalCaseLetterCount = validatePassword.minUpperCaseCharCount();
+        this.minNumberCount = validatePassword.minNumberCount();
     }
 
     public String getInput() {
@@ -28,4 +41,7 @@ public class PasswordRule extends BaseRule {
         return minCapitalCaseLetterCount;
     }
 
+    public int getMinNumberCount() {
+        return minNumberCount;
+    }
 }

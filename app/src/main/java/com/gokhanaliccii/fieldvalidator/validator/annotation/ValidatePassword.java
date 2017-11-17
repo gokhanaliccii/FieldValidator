@@ -15,7 +15,7 @@ public @interface ValidatePassword {
 
     String pattern();
 
-    int minNumber();
+    int minNumberCount();
 
-    int minCapitalCaseChar();
+    int minUpperCaseCharCount();
 }
