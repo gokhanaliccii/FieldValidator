@@ -63,7 +63,6 @@ public class RuleAdapter {
             e.printStackTrace();
         }
 
-
         return null;
     }
 

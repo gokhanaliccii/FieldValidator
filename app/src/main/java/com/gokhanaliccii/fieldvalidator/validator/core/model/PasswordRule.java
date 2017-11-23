@@ -1,6 +1,10 @@
 package com.gokhanaliccii.fieldvalidator.validator.core.model;
 
 import com.gokhanaliccii.fieldvalidator.validator.annotation.ValidatePassword;
+import com.gokhanaliccii.fieldvalidator.validator.core.matcher.Matcher;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by gokhan on 17/11/17.
@@ -43,5 +47,11 @@ public class PasswordRule extends BaseRule {
 
     public int getMinNumberCount() {
         return minNumberCount;
+    }
+
+    public List<Matcher> toMatcher() {
+        List<Matcher> matchers = new LinkedList<>();
+
+
     }
 }

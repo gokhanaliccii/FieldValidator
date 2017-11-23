@@ -10,6 +10,8 @@ public class PasswordValidator implements Validatable<PasswordRule> {
 
     @Override
     public boolean isValid(PasswordRule passwordRule) {
+
+
         return false;
     }
 }
