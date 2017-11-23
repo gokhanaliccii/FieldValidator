@@ -16,18 +16,19 @@ import java.util.List;
 
 public class RuleAdapter {
 
-    private Class clazz;
+    private Object target;
 
-    public RuleAdapter(Class clazz) {
-        this.clazz = clazz;
+
+    public RuleAdapter(Object o) {
+        this.target = o;
     }
 
-    private List<BaseRule> convert() {
-        if (clazz == null) {
+    public List<BaseRule> convert() {
+        if (target == null) {
             return emptyList();
         }
 
-        Field[] fields = clazz.getFields();
+        Field[] fields = target.getClass().getFields();
         if (fields == null)
             return emptyList();
 
@@ -43,7 +44,10 @@ public class RuleAdapter {
     private void parseFieldForRule(List<BaseRule> rules, Field field) {
 
         if (field.isAnnotationPresent(ValidatePassword.class)) {
-            createPasswordRule(field);
+            BaseRule passwordRule = createPasswordRule(field);
+            if (passwordRule != null) {
+                rules.add(passwordRule);
+            }
         }
 
 
@@ -55,7 +59,7 @@ public class RuleAdapter {
         ValidatePassword passwordAnnotation = (ValidatePassword) annotation;
 
         try {
-            Object o = field.get(clazz);
+            Object o = field.get(target);
             String value = (String) o;
 
             return new PasswordRule(value, passwordAnnotation);

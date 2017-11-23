@@ -13,9 +13,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidatePassword {
 
-    String pattern();
+    String pattern() default "";
 
-    int minNumberCount();
+    int minNumberCount() default 0;
 
-    int minUpperCaseCharCount();
+    int minUpperCaseCharCount() default 0;
 }
