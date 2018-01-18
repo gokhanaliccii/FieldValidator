@@ -4,12 +4,12 @@ package com.gokhanaliccii.fieldvalidator.validator.core.matcher;
  * Created by gokhan on 23/11/17.
  */
 
-public class NumericCharacterMatcher implements Matcher<String> {
+public class MinimumCapitalCharacterMatcher implements Matcher<String> {
 
-    private int minNumericCharacterCount;
+    private int minCapitalCharacterCount;
 
-    public NumericCharacterMatcher(int minCharacterCount) {
-        this.minNumericCharacterCount = minCharacterCount;
+    public MinimumCapitalCharacterMatcher(int minCharacterCount) {
+        this.minCapitalCharacterCount = minCharacterCount;
     }
 
     @Override
@@ -21,12 +21,12 @@ public class NumericCharacterMatcher implements Matcher<String> {
 
         char[] chars = s.toCharArray();
         for (char currentChar : chars) {
-            if (Character.isDigit(currentChar)) {
+            if (Character.isUpperCase(currentChar)) {
                 numericCounter++;
             }
         }
 
-        return numericCounter >= minNumericCharacterCount;
+        return numericCounter >= minCapitalCharacterCount;
     }
 
     private boolean isEmpty(String s) {

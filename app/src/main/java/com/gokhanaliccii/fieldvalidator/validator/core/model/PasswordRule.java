@@ -2,6 +2,8 @@ package com.gokhanaliccii.fieldvalidator.validator.core.model;
 
 import com.gokhanaliccii.fieldvalidator.validator.annotation.ValidatePassword;
 import com.gokhanaliccii.fieldvalidator.validator.core.matcher.Matcher;
+import com.gokhanaliccii.fieldvalidator.validator.core.matcher.MinimumCapitalCharacterMatcher;
+import com.gokhanaliccii.fieldvalidator.validator.core.matcher.NumericCharacterMatcher;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -49,9 +51,12 @@ public class PasswordRule extends BaseRule {
         return minNumberCount;
     }
 
-    public List<Matcher> toMatcher() {
-        List<Matcher> matchers = new LinkedList<>();
+    public List<Matcher<String>> toMatcher() {
+        List<Matcher<String>> matchers = new LinkedList<>();
 
+        matchers.add(new MinimumCapitalCharacterMatcher(minCapitalCaseLetterCount));
+        matchers.add(new NumericCharacterMatcher(minNumberCount));
 
+        return matchers;
     }
 }
